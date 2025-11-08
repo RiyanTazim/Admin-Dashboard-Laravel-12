@@ -1,0 +1,37 @@
+from cPanel
+Step 1: Go to FTP Account
+Step 2: From Directory select project url(it shows dropdown if you write it manually)
+Step 3: Then create FTP Account
+Step 4: Search the FTP account and click on "Configure FTP Client"
+
+Example Setup:
+FTP Username: softvence@rojasevelyn26.softvencefsd.xyz
+FTP server: ftp.softvencefsd.xyz
+FTP & explicit FTPS port:  21
+pass: SurSr*Vfk*Gu*uoJR])
+
+Step 5: Copy the manual setup
+
+Step 6: Create .gitHub folder -> workflow folder -> main.yml then paste this
+
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+          server: ftp.softvencefsd.xyz
+          username: softvence@rojasevelyn26.softvencefsd.xyz
+          password: "SurSrVfkGuuoJR])"
+
+Note: Change server, username, password according to your FTP settings for that project. You are all set

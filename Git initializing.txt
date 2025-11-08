@@ -1,0 +1,18 @@
+Initializing to Repo:
+
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git branch -M main
+	git remote add origin https://github.com/devscout24/a_jah17_wp_monkey_laravel.git
+	git push -u origin main
+
+	git add .
+	git commit -m "message"
+	git push
+
+Create Branches for Repo:
+
+	--- git checkout -b iqbal
+	--- git push --set-upstream origin iqbal 
+	--- git push

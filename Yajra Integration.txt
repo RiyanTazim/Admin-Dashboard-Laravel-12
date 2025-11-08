@@ -1,0 +1,27 @@
+Yajra Integration
+
+Step 1: composer require yajra/laravel-datatables:"^12"
+
+Step 2: php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
+
+Step 3: if ($request->ajax()) {
+        $data = User::query();
+        return DataTables::eloquent($data)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    return view('users.index');
+
+Step 4: <!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- jQuery (required for DataTables) -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+Step 5: <!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
