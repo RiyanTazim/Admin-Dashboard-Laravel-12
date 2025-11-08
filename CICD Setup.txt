@@ -32,6 +32,6 @@ jobs:
       with:
           server: ftp.softvencefsd.xyz
           username: softvence@rojasevelyn26.softvencefsd.xyz
-          password: "SurSrVfkGuuoJR])"
+          password: "******"
 
 Note: Change server, username, password according to your FTP settings for that project. You are all set
