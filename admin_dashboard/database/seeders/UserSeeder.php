@@ -1,7 +1,6 @@
 <?php
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,35 +10,36 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminExists = User::where('id', 1)->exists();
-        $userExists  = User::where('id', 2)->exists();
-
-        if (! $adminExists) {
-            User::updateOrCreate([
-                'id'                => 1,
+        // Add admin
+        $admin = \App\Models\User::where('email', 'admin@admin.com')->first();
+        if (! $admin) {
+            \App\Models\User::create([
+                // 'id' => 3,
                 'name'              => 'Mr. Admin',
-                'username'          => 'admin',
                 'email'             => 'admin@admin.com',
-                'is_admin'          => true,
+                'role'              => 'admin',
+                'is_premium'        => false,
                 'password'          => bcrypt('12345678'),
                 'email_verified_at' => now(),
             ]);
+        } else {
+            $this->command->info('Admin already exists in database');
         }
 
-        if (! $userExists) {
-            User::updateOrCreate([
-                'id'                => 2,
+        // Add regular user
+        $user = \App\Models\User::where('email', 'user@user.com')->first();
+        if (! $user) {
+            \App\Models\User::create([
+                // 'id' => 2,
                 'name'              => 'Mr. User',
-                'username'          => 'user',
                 'email'             => 'user@user.com',
-                'is_admin'          => false,
+                'role'              => 'user',
+                'is_premium'        => true,
                 'password'          => bcrypt('12345678'),
                 'email_verified_at' => now(),
             ]);
-        }
-
-        if ($adminExists && $userExists) {
-            $this->command->info('User/Admin already exist.');
+        } else {
+            $this->command->info('User already exists in database');
         }
     }
 }
