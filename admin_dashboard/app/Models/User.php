@@ -3,6 +3,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -10,7 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,23 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
+        'phone',
+        'birth_date',
+        'position',
+        'about',
+        'address',
+        'country',
+        'city',
+        'state',
+        'zip_code',
+        'role',
+        'facebook_id',
+        'google_id',
+        'is_premium',
+        'device_id',
+        'fcm_token',
     ];
 
     /**
@@ -31,6 +48,11 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'created_at',
+        'updated_at',
+        'password_reset_token',
+        'password_reset_token_expiry',
     ];
 
     /**
@@ -46,17 +68,30 @@ class User extends Authenticatable implements JWTSubject
         ];
     }
 
+    //for api image with url retrieve
+    // public function getAvatarAttribute($value): string | null
+    // {
+    //     if (request()->is('api/*') && ! empty($value)) {
+    //         return url($value);
+    //     }
+    //     return $value;
+    // }
+
     /**
-     * ✅ Required by JWTSubject
+     * Get the identifier that will be stored in the JWT subject claim.
+     *
+     * @return mixed
      */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    /**
-     * ✅ Required by JWTSubject
-     */
+/**
+ * Return a key value array, containing any custom claims to be added to the JWT.
+ *
+ * @return array
+ */
     public function getJWTCustomClaims()
     {
         return [];

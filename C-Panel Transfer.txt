@@ -1,0 +1,30 @@
+C-Panel Transfer:
+
+Domain create first ---- 
+Step 1 -> Domains
+Step 2 -> Crate a new Domain
+Step 3 -> Submit
+
+Manage My Databases ------
+
+Step 1 -> Create New Database
+
+Database Users Add New User-----
+Step 1 -> username
+Step 2 -> pass
+
+Add User To Database ------
+
+Step 1 -> Select User
+Step 2 -> DB 
+Step 3 -> Allow ALL PRIVILEGES
+
+
+FTP Accounts -----
+Add FTP Account
+
+Step 1 -> Log in
+Step 2 -> Domain
+Step 3 -> Pass
+Step 4 -> Directory
+Step 5 -> Click Create FTP A/C

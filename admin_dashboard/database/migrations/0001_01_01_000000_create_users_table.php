@@ -13,28 +13,34 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('google_id')->nullable();
-            $table->string('avatar', 250)->default('user.png');
-            $table->string('name', 250);
-            $table->string('username', 250)->unique()->nullable();
+            $table->string('name');
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
+            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->boolean('is_premium')->nullable()->default(false);
+            $table->string('device_id')->nullable();
+            $table->string('fcm_token')->nullable();
+            $table->string('phone')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('position')->nullable();
+            $table->string('about')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('zip_code', 10)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->boolean('is_admin')->default(0);
-            $table->date('date_of_birth')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('zipcode')->nullable();
-            $table->string('country')->nullable();
+            $table->string('password_reset_token')->nullable();
+            $table->timestamp('password_reset_token_expiry')->nullable();
             $table->string('otp', 10)->nullable();
             $table->timestamp('otp_expired_at')->nullable();
             $table->timestamp('otp_verified_at')->nullable();
-            $table->string('password_reset_token')->nullable();
-            $table->timestamp('password_reset_token_expires_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
             $table->softDeletes();
         });
 
