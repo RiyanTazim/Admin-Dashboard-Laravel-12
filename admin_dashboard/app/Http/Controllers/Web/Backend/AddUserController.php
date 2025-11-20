@@ -26,53 +26,56 @@ class AddUserController extends Controller
     public function index(Request $request): View | JsonResponse
     {
         if ($request->ajax()) {
-            $data = \App\Models\User::where('email', '!=', 'iqu@iqu.com')->latest();
+
+            $data = User::select('id', 'avatar', 'name', 'email', 'is_premium', 'role')
+                ->whereNull('deleted_at')
+                ->latest();
+
             return DataTables::of($data)
                 ->addIndexColumn()
 
-                ->addColumn('avatar', function ($data) {
+                ->editColumn('avatar', function ($data) {
                     $avatar = $data->avatar ? asset($data->avatar) : asset('frontend/no-image.jpg');
-                    return '<img src="' . $avatar . '" width="60" alt="Article Image"/>';
+                    return '<img src="' . $avatar . '" width="60">';
                 })
-                ->addColumn('name', function ($data) {
-                    $name = $data->name ?? 'N/A';
-                    return $name;
+
+                ->editColumn('is_premium', function ($data) {
+                    return $data->is_premium
+                        ? '<span style="color:#fff;background:#008B8B;padding:5px;border-radius:5px">Yes</span>'
+                        : '<span style="color:#fff;background:#E1712B;padding:5px;border-radius:5px">No</span>';
                 })
-                ->addColumn('email', function ($data) {
-                    $email = $data->email ?? 'N/A';
-                    return $email;
-                })
-                ->addColumn('is_premium', function ($data) {
-                    $is_premium = $data->is_premium ? '<span style="color: #fff; border-radius: 5px; padding: 5px; background-color: #008B8B">Yes</span>' : '<span style="color: #fff; border-radius: 5px; padding: 5px; background-color: #E1712B">No</span>';
-                    return $is_premium;
-                })
-                ->addColumn('role', function ($data) {
-                    $role = $data->role ?? 'N/A';
-                    $color = $role == 'admin' ? '#E1712B' : '#008B8B';
-                    return '<span style="color: #fff; border-radius: 5px; padding: 5px; background-color:' . $color . '">' . $role . '</span>';
+
+                ->editColumn('role', function ($data) {
+                    $color = $data->role == 'admin' ? '#E1712B' : '#008B8B';
+                    return '<span style="color:#fff;background:' . $color . ';padding:5px;border-radius:5px">' . $data->role . '</span>';
                 })
 
                 ->addColumn('action', function ($data) {
-                    return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <a href="' . route('users.edit', ['id' => $data->id]) . '" type="button" class="btn btn-primary fs-14 text-white edit-icn" title="Edit">
-                                    <i class="fe fe-edit"></i>
-                                </a>
-                                 <a href="#" type="button" onclick="showDeleteConfirm(' . $data->id . ')" class="btn btn-danger fs-14 text-white delete-icn" title="Delete">
-                                    <i class="fe fe-trash"></i>
-                                </a>
-                            </div>';
+                    return '
+                    <div class="btn-group btn-group-sm">
+                        <a href="' . route('users.edit', $data->id) . '" class="btn btn-primary">
+                            <i class="fe fe-edit"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger" onclick="showDeleteConfirm(' . $data->id . ')">
+                            <i class="fe fe-trash"></i>
+                        </a>
+                    </div>';
                 })
-                //is_premiums custom filter
+
                 ->filterColumn('is_premium', function ($query, $keyword) {
-                    if (strtolower($keyword) === 'yes') {
+                    $keyword = strtolower($keyword);
+
+                    if ($keyword == 'yes') {
                         $query->where('is_premium', 1);
-                    } elseif (strtolower($keyword) === 'no') {
+                    } elseif ($keyword == 'no') {
                         $query->where('is_premium', 0);
                     }
                 })
-                ->rawColumns(['name', 'email', 'avatar', 'is_premium', 'role', 'action'])
-                ->make();
+
+                ->rawColumns(['avatar', 'is_premium', 'role', 'action'])
+                ->make(true);
         }
+
         return view('backend.layouts.add-users.index');
     }
 
