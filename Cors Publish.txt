@@ -1,0 +1,5 @@
+Publish cors (create config/cors.php if not exist)
+
+Or Manually:
+add middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+inside bootstrap/app.php -> withMiddleware

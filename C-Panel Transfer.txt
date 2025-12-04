@@ -8,23 +8,30 @@ Step 3 -> Submit
 Manage My Databases ------
 
 Step 1 -> Create New Database
+Step 2 -> Insert name on New Database
+Step 3 -> Click create database
 
 Database Users Add New User-----
+Scroll on My Manage My Databases and go to add new user
+
 Step 1 -> username
 Step 2 -> pass
+Step 3 -> Click create user
 
-Add User To Database ------
+Add User To Database Newly created database------
 
 Step 1 -> Select User
 Step 2 -> DB 
-Step 3 -> Allow ALL PRIVILEGES
+Step 3 -> Mark Allow ALL PRIVILEGES
 
 
-FTP Accounts -----
-Add FTP Account
+Now go to FTP Accounts on c-Panel Tools-----
+Go to Add FTP Account
 
 Step 1 -> Log in
 Step 2 -> Domain
 Step 3 -> Pass
 Step 4 -> Directory
 Step 5 -> Click Create FTP A/C
+
+After uploading project set database, username, pass on env. Then integrate .htaccess and then run composer update and php artisan key:generate
