@@ -5,6 +5,17 @@
 
     RewriteEngine On
 
+           # --- FIX: Allow CORS for SVG files ---
+    <IfModule mod_headers.c>
+        <FilesMatch "\.(svg)$">
+            Header set Access-Control-Allow-Origin "*"
+            Header set Access-Control-Allow-Methods "GET, OPTIONS"
+            Header set Access-Control-Allow-Headers "*"
+        </FilesMatch>
+    </IfModule>
+    # --- END SVG CORS FIX ---
+
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
