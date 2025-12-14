@@ -184,12 +184,12 @@
 </script>
 {{-- dropify end --}}
 
-{{-- summernot start --}}
+{{-- summernote start --}}
 <script>
     $(document).ready(function() {
-        $('#summernote').summernote({
+        $('.summernote').summernote({
             tabsize: 2,
-            height: 220,
+            height: 220
         });
     });
 </script>
@@ -213,4 +213,9 @@
 
 {{-- ck editor end --}}
 
+
+{{-- Fancybox JS --}}
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+{{-- Fancybox JS End --}}
 @stack('scripts')
