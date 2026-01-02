@@ -12,7 +12,7 @@ Step 2 -> Insert name on New Database
 Step 3 -> Click create database
 
 Database Users Add New User-----
-Scroll on My Manage My Databases and go to add new user
+Scroll on Manage My Databases and go to add new user
 
 Step 1 -> username
 Step 2 -> pass
@@ -35,3 +35,7 @@ Step 4 -> Directory
 Step 5 -> Click Create FTP A/C
 
 After uploading project set database, username, pass on env. Then integrate .htaccess and then run composer update and php artisan key:generate
+
+
+NB: If not running go to PHPUnit Manager
+Set PHP Version
