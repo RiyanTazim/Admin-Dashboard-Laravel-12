@@ -11,6 +11,12 @@
     /* CK Editor minimum height */
     .ck-editor__editable_inline {
         min-height: 200px;
+        background: #1d2130 !important;
+    }
+
+    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+        border: 1px solid #1c1f31 !important;
+        border-radius: 0.5rem !important;
     }
 </style>
 

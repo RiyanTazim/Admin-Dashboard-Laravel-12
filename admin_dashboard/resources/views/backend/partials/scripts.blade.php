@@ -203,7 +203,8 @@
         ClassicEditor
             .create(element, {
                 removePlugins: [],
-                height: '500px'
+                height: '500px',
+                background: '#000 !important',
             })
             .catch(error => {
                 console.error(error);

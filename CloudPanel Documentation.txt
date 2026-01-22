@@ -1,0 +1,12 @@
+CloudPanel Guideline Documentation:
+
+-> Go to OS & Panel -> Operating System -> Select CloudPanel and create pass (it might take a few minutes)
+
+-> login to cloudpanel and from cloudpanel select your stack (like create a php site) and then select your system setup and add domain name (Keep All the password same)
+
+-> Create Database from database tab/option
+
+-> Create SSL/TLS ->go to action -> select new let's encrypt certificate and -> create and install
+(Some errors were occurring regarding manage DNS issue. modify the dns type name and point to(point to is always IP address))
+
+-> composer update, php key generate, migrate and all these.
