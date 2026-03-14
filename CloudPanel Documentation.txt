@@ -1,4 +1,5 @@
 CloudPanel Guideline Documentation:
+-----------------------------------
 
 -> Go to OS & Panel -> Operating System -> Select CloudPanel and create pass (it might take a few minutes)
 
@@ -10,3 +11,22 @@ CloudPanel Guideline Documentation:
 (Some errors were occurring regarding manage DNS issue. modify the dns type name and point to(point to is always IP address))
 
 -> composer update, php key generate, migrate and all these.
+
+
+Unlock SSH port and other Ports and Customization (SSH port to run CI/CD)
+-------------------------------------------------------------------------
+-> Go to root server on tour PC terminal with password
+-> Run: ufw allow 21/tcp
+-> Run: ufw allow 20/tcp
+-> Check status: ufw status
+-> Enter inside: cd /etc
+-> Again Enter inside etc: cd proftpd
+-> Check List: /etc/proftpd# ls
+-> Run nano proftpd.conf to get inside it to change some permissions
+-> After entering into nano proftpd.conf: (use keyboar arrows to scroll up/down) change "TimeoutNoTransfer 600 -> 6000 ,TimeoutStalled 600 -> 6000, TimeoutIdle 1200 -> 12000" THEN look for "PassivePorts and change it into 30000(first port) 31000(second port)"respectively AND LASTLY change "MaqueradeAddress into server IP Address (168.231.***.***)
+-> Then Press Ctrl + o to save and Ctrl + x to go out of the proftpd.conf folder
+-> Then Run: systemctl restart proftpd
+-> Run: ufw allow 30000:31000/tcp (to allow these port)
+-> Write exit to close.
+-------------------------------------------------------------------------------------------------------------------------------
+
