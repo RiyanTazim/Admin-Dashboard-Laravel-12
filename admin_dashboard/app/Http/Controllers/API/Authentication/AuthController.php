@@ -3,7 +3,7 @@ namespace App\Http\Controllers\API\Authentication;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ForgotPassword;
+// use App\Http\Requests\ForgotPassword;
 use App\Mail\PasswordResetMail;
 use App\Models\User;
 use App\Notifications\CommonNotification;
@@ -11,10 +11,10 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Password;
+// use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
